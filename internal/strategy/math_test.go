@@ -24,10 +24,10 @@ func TestGapPercent(t *testing.T) {
 
 func TestChooseSlave(t *testing.T) {
 	slaves := []SlaveQuote{{"A", d("20000")}, {"B", d("21000")}, {"C", d("19000")}}
-	// master 90000 MYR, rate 4.5: A=-0%,... A bid 90000 -> 0, B 94500 -> -5, C 85500 -> +5
+	// master 90000 MYR, rate 4.5: A gap 0, B (94500 MYR) gap -5, C (85500 MYR) gap +5
 	name, gap, ok := ChooseSlave(d("90000"), d("4.5"), slaves)
 	if !ok || name != "B" || !gap.Equal(d("-5")) {
-		t.Fatalf("got %s %s %v (tie keeps earlier)", name, gap, ok)
+		t.Fatalf("got %s %s %v ", name, gap, ok)
 	}
 	if _, _, ok := ChooseSlave(d("90000"), d("4.5"), []SlaveQuote{{"A", d("20000")}}); ok {
 		t.Fatal("zero gap should not select a slave")
