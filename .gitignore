@@ -1,0 +1,26 @@
+.env
+trade_data.csv
+balances.txt
+.cursorrules
+
+# secret guard
+bin/test.js
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.keystore
+keystore/
+*.dump
+*.bak
+secrets/
+
+# Go build outputs
+/bin/
+/hft-arb-bot
+*.exe
+*.test
+*.out
+coverage.*
